@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-11-23 21:00:10.742
+-- Last modification date: 2022-11-24 17:18:24.107
 
 -- tables
 -- Table: asset
@@ -20,7 +20,24 @@ CREATE TABLE asset_connection (
     CONSTRAINT asset_connection_pk PRIMARY KEY (id)
 );
 
+-- Table: asset_metrics
+CREATE TABLE asset_metrics (
+    id serial  NOT NULL,
+    value int  NOT NULL,
+    metrics_time timestamp  NOT NULL,
+    asset_connection_id int  NOT NULL,
+    CONSTRAINT asset_metrics_pk PRIMARY KEY (id)
+);
+
 -- foreign keys
+-- Reference: asset_metrics_asset_connection (table: asset_metrics)
+ALTER TABLE asset_metrics ADD CONSTRAINT asset_metrics_asset_connection
+    FOREIGN KEY (asset_connection_id)
+    REFERENCES asset_connection (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
 -- Reference: source_asset_id_fk (table: asset_connection)
 ALTER TABLE asset_connection ADD CONSTRAINT source_asset_id_fk
     FOREIGN KEY (source_asset_id)

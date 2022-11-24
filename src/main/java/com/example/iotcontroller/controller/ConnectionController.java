@@ -1,4 +1,4 @@
-package com.example.iotcontroller.controllers;
+package com.example.iotcontroller.controller;
 import com.example.iotcontroller.domain.assetconnection.AssetConnectionDto;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -17,21 +17,11 @@ import java.time.Instant;
 public class AssetConnectionDto implements Serializable {
     private Integer id;
     private Integer sourceAssetId;
-    @Size(max = 255)
-    @NotNull
     private String sourceAssetName;
-    @Size(max = 255)
-    @NotNull
     private String sourceAssetRole;
     private Integer targetAssetId;
-    @Size(max = 255)
-    @NotNull
     private String targetAssetName;
-    @Size(max = 255)
-    @NotNull
     private String targetAssetRole;
-    @NotNull
     private Instant createdAt;
-    @NotNull
     private Integer intervalMs;
 }
