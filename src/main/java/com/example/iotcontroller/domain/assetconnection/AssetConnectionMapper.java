@@ -1,7 +1,5 @@
 package com.example.iotcontroller.domain.assetconnection;
 
-import com.example.iotcontroller.domain.assetconnection.AssetConnection;
-import com.example.iotcontroller.domain.assetconnection.AssetConnectionDto;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
@@ -12,12 +10,13 @@ public interface AssetConnectionMapper {
     @Mapping(source = "targetAssetId", target = "targetAsset.id")
     @Mapping(source = "targetAssetName", target = "targetAsset.name")
     @Mapping(source = "targetAssetRole", target = "targetAsset.role")
-    AssetConnection assetConnectionDtoToAssetConnection(AssetConnectionDto assetConnectionDto);
+    @Mapping(target = "id", ignore = true)
+    AssetConnection toEntity(AssetConnectionDto assetConnectionDto);
 
-    @InheritInverseConfiguration(name = "assetConnectionDtoToAssetConnection")
-    AssetConnectionDto assetConnectionToAssetConnectionDto(AssetConnection assetConnection);
+    @InheritInverseConfiguration(name = "toEntity")
+    AssetConnectionDto toDto(AssetConnection assetConnection);
 
-    @InheritConfiguration(name = "assetConnectionDtoToAssetConnection")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    AssetConnection updateAssetConnectionFromAssetConnectionDto(AssetConnectionDto assetConnectionDto, @MappingTarget AssetConnection assetConnection);
+    AssetConnection updateEntity(AssetConnectionDto assetConnectionDto, @MappingTarget AssetConnection assetConnection);
 }
