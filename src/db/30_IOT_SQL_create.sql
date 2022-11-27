@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-11-27 12:19:04.193
+-- Last modification date: 2022-11-27 12:56:06.543
 
 -- tables
 -- Table: asset
@@ -24,7 +24,7 @@ CREATE TABLE asset_connection (
 CREATE TABLE asset_metrics (
     id serial  NOT NULL,
     value int  NOT NULL,
-    metrics_time date  NOT NULL,
+    metrics_time timestamp  NULL,
     asset_connection_id int  NOT NULL,
     CONSTRAINT asset_metrics_pk PRIMARY KEY (id)
 );

@@ -1,13 +1,12 @@
 package com.example.iotcontroller.controller;
 import com.example.iotcontroller.domain.assetconnection.AssetConnectionDto;
+import com.example.iotcontroller.domain.assetmetrics.AssetMetricDto;
 import com.example.iotcontroller.service.AssetConnectionService;
+import com.example.iotcontroller.service.AssetMetricsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -20,10 +19,9 @@ public class AssetConnectionController {
     @Resource
     private AssetConnectionService assetConnectionService;
 
-//    @PostMapping("/create/{sourceAssetId}/{targetAssetId}")
-//    public AssetConnectionDto createConnection(@PathVariable int sourceAssetId, @PathVariable int targetAssetId) {
-//        return assetConnectionService.createConnection(sourceAssetId,targetAssetId);
-//    }
+    @Resource
+    private AssetMetricsService assetMetricsService;
+
 
     @PostMapping(value = "/create/{sourceAssetId}/{targetAssetId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AssetConnectionDto> createConnection(@PathVariable int sourceAssetId, @PathVariable int targetAssetId) throws Exception {
@@ -31,20 +29,11 @@ public class AssetConnectionController {
         return ResponseEntity.ok(assetConnectionService.createConnection(sourceAssetId, targetAssetId));
     }
 
-    /*
-    @PostMapping("/create/{sourceAssetId}/{targetAssetId}")
-    public AssetConnectionDto createConnection(@PathVariable int sourceAssetId, @PathVariable int targetAssetId) {
-        System.out.println(sourceAssetId);
-        System.out.println(targetAssetId);
-        var resp = new AssetConnectionDto();
-        resp.setId(1003);
-        resp.setSourceAssetId(sourceAssetId);
-        resp.setTargetAssetId(targetAssetId);
-
-        return resp;
-    }*/
-
-
-
+    @PostMapping("/{connectionId}/metrics")
+    public ResponseEntity<?> saveAssetMetrics (@PathVariable Integer connectionId,  @RequestBody AssetMetricDto assetMetricDto ) throws Exception {
+        //log.info("Got some metrics for connection#{} - value: {}", connectionId,  assetMetricDto.getValue());
+        assetMetricsService.save(connectionId, assetMetricDto);
+        return ResponseEntity.noContent().build();
+    }
 
 }

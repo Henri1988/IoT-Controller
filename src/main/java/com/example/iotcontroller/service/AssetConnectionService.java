@@ -46,17 +46,10 @@ public class AssetConnectionService {
 
         return assetConnectionMapper.toDto(assetConnection);
 
+    }
 
-
-//        AssetDto machine = assetService.getAssetById(sourceAssetId);
-//        assetConnection.setSourceAsset(assetMapper.toEntity(machine));
-//
-//        AssetDto device = assetService.getAssetById(targetAssetId);
-//        assetConnection.setTargetAsset(assetMapper.toEntity(device));
-//
-//        assetConnectionRepository.save(assetConnection);
-//
-//        return assetConnectionMapper.toDto(assetConnection);
+    public AssetConnection findConnectionById(Integer id){
+        return assetConnectionRepository.findAssetConnectionById(id);
     }
 
 }
