@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Service
 public class AssetConnectionService {
@@ -38,6 +39,8 @@ public class AssetConnectionService {
 
         Asset device = assetRepository.findAssetById(targetAssetId);
         assetConnection.setTargetAsset(device);
+        assetConnection.setCreatedAt(LocalTime.now());
+        assetConnection.setIntervalMs(5000);
 
         assetConnectionRepository.save(assetConnection);
 
