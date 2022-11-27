@@ -31,7 +31,6 @@ public class AssetConnectionController {
 
     @PostMapping("/{connectionId}/metrics")
     public ResponseEntity<?> saveAssetMetrics (@PathVariable Integer connectionId,  @RequestBody AssetMetricDto assetMetricDto ) throws Exception {
-        //log.info("Got some metrics for connection#{} - value: {}", connectionId,  assetMetricDto.getValue());
         assetMetricsService.save(connectionId, assetMetricDto);
         return ResponseEntity.noContent().build();
     }

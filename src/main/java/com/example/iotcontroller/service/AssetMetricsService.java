@@ -23,6 +23,7 @@ public class AssetMetricsService {
     public void save(Integer connectionId, AssetMetricDto assetMetricDto) {
         AssetMetric assetMetric =assetMetricMapper.toEntity(assetMetricDto);
         AssetConnection assetConnection =assetConnectionService.findConnectionById(connectionId);
+
         assetMetric.setAssetConnection(assetConnection);
         assetMetricRepository.save(assetMetric);
     }
