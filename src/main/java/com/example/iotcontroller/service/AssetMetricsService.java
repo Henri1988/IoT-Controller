@@ -8,6 +8,7 @@ import com.example.iotcontroller.domain.assetmetrics.AssetMetricRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.Instant;
 
 @Service
 public class AssetMetricsService {
@@ -20,11 +21,12 @@ public class AssetMetricsService {
 
     @Resource
     private AssetMetricRepository assetMetricRepository;
-    public void save(Integer connectionId, AssetMetricDto assetMetricDto) {
+    public AssetMetricDto save(Integer connectionId, AssetMetricDto assetMetricDto) {
         AssetMetric assetMetric =assetMetricMapper.toEntity(assetMetricDto);
         AssetConnection assetConnection =assetConnectionService.findConnectionById(connectionId);
-
+        assetMetric.setMetricsTime(Instant.now());
         assetMetric.setAssetConnection(assetConnection);
         assetMetricRepository.save(assetMetric);
+        return assetMetricMapper.toDto(assetMetric);
     }
 }

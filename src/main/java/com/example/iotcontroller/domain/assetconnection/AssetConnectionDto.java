@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.time.Instant;
 
 /**
  * A DTO for the {@link AssetConnection} entity
@@ -19,7 +19,7 @@ public class AssetConnectionDto implements Serializable {
     private final String targetAssetName;
     private final String targetAssetRole;
     @NotNull
-    private final LocalTime createdAt;
-    @NotNull
     private final Integer intervalMs;
+    @NotNull
+    private final Instant createdAt;
 }

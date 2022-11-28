@@ -1,15 +1,12 @@
 package com.example.iotcontroller.domain.assetconnection;
 
 import com.example.iotcontroller.domain.asset.Asset;
-import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalTime;
+import java.time.Instant;
 
-@Data
 @Entity
-
 @Table(name = "asset_connection")
 public class AssetConnection {
     @Id
@@ -28,13 +25,51 @@ public class AssetConnection {
     private Asset targetAsset;
 
     @NotNull
-    @Column(name = "created_at", nullable = false)
-    private LocalTime createdAt;
-
-    @NotNull
     @Column(name = "interval_ms", nullable = false)
     private Integer intervalMs;
 
 
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Asset getSourceAsset() {
+        return sourceAsset;
+    }
+
+    public void setSourceAsset(Asset sourceAsset) {
+        this.sourceAsset = sourceAsset;
+    }
+
+    public Asset getTargetAsset() {
+        return targetAsset;
+    }
+
+    public void setTargetAsset(Asset targetAsset) {
+        this.targetAsset = targetAsset;
+    }
+
+    public Integer getIntervalMs() {
+        return intervalMs;
+    }
+
+    public void setIntervalMs(Integer intervalMs) {
+        this.intervalMs = intervalMs;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 
 }

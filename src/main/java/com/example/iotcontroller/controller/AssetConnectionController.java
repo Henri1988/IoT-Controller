@@ -30,9 +30,9 @@ public class AssetConnectionController {
     }
 
     @PostMapping("/{connectionId}/metrics")
-    public ResponseEntity<?> saveAssetMetrics (@PathVariable Integer connectionId,  @RequestBody AssetMetricDto assetMetricDto ) throws Exception {
-        assetMetricsService.save(connectionId, assetMetricDto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<AssetMetricDto> saveAssetMetrics (@PathVariable Integer connectionId,  @RequestBody AssetMetricDto assetMetricDto ) throws Exception {
+
+        return ResponseEntity.ok(assetMetricsService.save(connectionId, assetMetricDto));
     }
 
 }

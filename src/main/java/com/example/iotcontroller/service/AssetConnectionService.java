@@ -10,6 +10,7 @@ import com.example.iotcontroller.domain.assetconnection.AssetConnectionRepositor
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -39,7 +40,7 @@ public class AssetConnectionService {
 
         Asset device = assetRepository.findAssetById(targetAssetId);
         assetConnection.setTargetAsset(device);
-        assetConnection.setCreatedAt(LocalTime.now());
+        assetConnection.setCreatedAt(Instant.now());
         assetConnection.setIntervalMs(5000);
 
         assetConnectionRepository.save(assetConnection);
