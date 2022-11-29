@@ -22,15 +22,15 @@ public class AssetMetric {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotNull
+
     @Column(name = "value", nullable = false)
     private Integer value;
 
-    @NotNull
+
     @Column(name = "metrics_time", nullable = false)
     private Instant metricsTime;
 
-    @NotNull
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "asset_connection_id", nullable = false)
     private AssetConnection assetConnection;

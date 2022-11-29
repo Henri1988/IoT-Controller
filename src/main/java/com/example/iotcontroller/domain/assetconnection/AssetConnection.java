@@ -14,17 +14,17 @@ public class AssetConnection {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotNull
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "source_asset_id", nullable = false)
     private Asset sourceAsset;
 
-    @NotNull
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "target_asset_id", nullable = false)
     private Asset targetAsset;
 
-    @NotNull
+
     @Column(name = "interval_ms", nullable = false)
     private Integer intervalMs;
 
